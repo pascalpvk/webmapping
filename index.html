@@ -85,17 +85,37 @@
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,'}).addTo(map);
 
     //Ajout du layer GeoJSON Département
-    var DEPARTEMENTS = L.geoJson(deps_idf, {
+    // var DEPARTEMENTS = L.geoJson(deps_idf, {
+    //     style: function (feature) {
+    //       return {
+    //           weight: feature.properties.radius_qgis2leaf,
+    //           color: feature.properties.color_qgis2leaf,
+    //           opacity: feature.properties.transp_qgis2leaf,
+    //           fillOpacity: feature.properties.transp_qgis2leaf
+    //         };
+    //       }
+    //     });
+    //   DEPARTEMENTS.addTo(map);
+
+
+    // DEPARTEMENTS
+    //fonction popup
+    function onEachFeature(feature, layer) {
+        if (feature.properties) {
+            layer.bindPopup("<b>" + feature.properties.CODE_DEPT + "</b><br>" + feature.properties.NOM_DEPT);
+        }
+    }
+    //Ajout du layer GeoJSON Departements IDF
+    var deps_idf_var = new L.geoJson(deps_idf,{
+        onEachFeature: onEachFeature,
         style: function (feature) {
-          return {
-              weight: feature.properties.radius_qgis2leaf,
-              color: feature.properties.color_qgis2leaf,
-              opacity: feature.properties.transp_qgis2leaf,
-              fillOpacity: feature.properties.transp_qgis2leaf
-            };
-          }
-        });
-      DEPARTEMENTS.addTo(map);
+            return {color: feature.properties.border_color_qgis2leaf,
+                fillColor: feature.properties.color_qgis2leaf,
+                weight: feature.properties.radius_qgis2leaf,
+                opacity: feature.properties.transp_qgis2leaf,
+                fillOpacity: feature.properties.transp_qgis2leaf};
+            } });
+        deps_idf_var.addTo(map);
 
     L.geoJson(RERA, {   }).addTo(map);
     //Ajout du layer GeoJSON RER A
@@ -208,13 +228,6 @@ L.marker([49.009691,2.547924], {icon: airportIcon}).bindPopup('Aéroport de Pari
 L.marker([48.961472,2.437202], {icon: airportIcon}).bindPopup('Aéroport du Bourget').addTo(airports);
 airports.addTo(map);
 
-
-//fonction popup
-function onEachFeature(feature, layer) {
-    if (feature.properties) {
-        layer.bindPopup("<b>" + feature.properties.CODE_DEPT + "</b><br>" + feature.properties.NOM_DEPT);
-    }
-}
 
 
 </script>
