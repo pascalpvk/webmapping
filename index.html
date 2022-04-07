@@ -84,6 +84,9 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 17,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,'}).addTo(map);
 
+//Ajout de l'échelle
+L.control.scale().addTo(map);
+
     //Ajout du layer GeoJSON Département
     // var DEPARTEMENTS = L.geoJson(deps_idf, {
     //     style: function (feature) {
@@ -226,6 +229,8 @@ var airports = new L.LayerGroup();
 L.marker([48.7318763,2.369796], {icon: airportIcon}).bindPopup('Aéroport de Paris- Orly.').addTo(airports);
 L.marker([49.009691,2.547924], {icon: airportIcon}).bindPopup('Aéroport de Paris-Roissy Charles-de-Gaulle.').addTo(airports);
 L.marker([48.961472,2.437202], {icon: airportIcon}).bindPopup('Aéroport du Bourget').addTo(airports);
+L.marker([48.7503196,2.1072635], {icon: airportIcon}).bindPopup('Aéroport de Toussus-le-Noble').addTo(airports);
+
 airports.addTo(map);
 
 
