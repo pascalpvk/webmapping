@@ -24,7 +24,18 @@
   <!-- Leaflet Control OSM Geocoder -->
   <!-- https://github.com/k4r573n/leaflet-control-osm-geocoder -->
   <script src="https://rawgit.com/k4r573n/leaflet-control-osm-geocoder/master/Control.OSMGeocoder.js"></script>
-	<link rel="stylesheet" href="https://rawgit.com/k4r573n/leaflet-control-osm-geocoder/master/Control.OSMGeocoder.css" />
+<link rel="stylesheet" href="https://rawgit.com/k4r573n/leaflet-control-osm-geocoder/master/Control.OSMGeocoder.css" />
+
+    <!-- PlugIn Marker Cluster pour Leaflet -->
+    <!-- Leaflet.markercluster -->
+    <!-- https://unpkg.com/leaflet.markercluster@1.4.1/dist/ -->
+    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
+  <!-- <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" /> -->
+
 
 
     <!-- Chargement des données -->
@@ -57,6 +68,7 @@
   <li>Plugin FullScreen : <a href="https://github.com/brunob/leaflet.fullscreen"
     >https://github.com/brunob/leaflet.fullscreen</a></li>
   <li><a href="https://github.com/k4r573n/leaflet-control-osm-geocoder">Leaflet Control OSM Geocoder</a>
+    <li><a href="https://github.com/Leaflet/Leaflet.markercluster">Cluster de Marker</a></li>
 </ul>
 
 <!-- Leaflet Control OSM Geocoder -->
@@ -216,6 +228,53 @@ L.control.scale().addTo(map);
       });
 //     GARES.addTo(map);
 
+
+
+//Ajout du layer GeoJSON stations Autolib
+// var AUTOLIB = L.geoJson(stations_autolib, {
+//     style: function (feature) {
+//       return {
+//           weight: feature.properties.radius_qgis2leaf,
+//           color: feature.properties.color_qgis2leaf,
+//           opacity: feature.properties.transp_qgis2leaf,
+//           fillOpacity: feature.properties.transp_qgis2leaf
+//         };
+//       }
+//     });
+//     AUTOLIB.addTo(map);
+
+    // var markers = L.markerClusterGroup();
+    //
+    // 		for (var i = 0; i < stations_autolib.length; i++) {
+    // 			var a = addressPoints[i];
+    // 			var title = a[2];
+    // 			var marker = L.marker(new L.LatLng(a[0], a[1]), { title: title });
+    // 			marker.bindPopup(title);
+    // 			markers.addLayer(marker);
+    // 		}
+    //
+    // 		map.addLayer(markers);
+
+
+            var markers = L.markerClusterGroup();
+
+    		var geoJsonLayer = L.geoJson(stations_autolib, {
+    			onEachFeature: function (feature, layer) {
+    				layer.bindPopup(feature.properties.address);
+    			}
+    		});
+    		markers.addLayer(geoJsonLayer);
+
+    		map.addLayer(markers);
+    		map.fitBounds(markers.getBounds());
+
+
+// var markers = L.markerClusterGroup();
+// markers.addLayer(L.marker(getRandomLatLng(map)));
+// ... Add more layers ...
+// map.addLayer(markers);
+
+
 // Les Aéroports
 //var marker = L.marker([48.7262321,2.3630482]).addTo(map);
 
@@ -233,6 +292,17 @@ L.marker([48.7503196,2.1072635], {icon: airportIcon}).bindPopup('Aéroport de To
 
 airports.addTo(map);
 
+var title = new L.Control();
+title.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info" this.update();
+    this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>2014<br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>';
+    return this._div;
+};
+title.update = function () {
+    // this._div.innerHTML = '<h2>This is the title</h2>This is the subtitle'
+    this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>2014<br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>'
+};
+    title.addTo(map);
 
 
 </script>
