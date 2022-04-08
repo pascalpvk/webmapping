@@ -40,8 +40,8 @@
 <!-- Leaflet plugins -->
 <!-- Shramov  Leaflet plugins -->
 <!-- https://github.com/shramov/leaflet-plugins/ -->
-<!-- <script src="shramov-leaflet-plugins-master/layer/tile/Bing.js"></script>
-<script src="shramov-leaflet-plugins-master/layer/tile/Bing.addon.applyMaxNativeZoom.js"></script> -->
+<script src="shramov-leaflet-plugins-master/layer/tile/Bing.js"></script>
+<script src="shramov-leaflet-plugins-master/layer/tile/Bing.addon.applyMaxNativeZoom.js"></script>
 
 
     <!-- Chargement des données -->
@@ -102,34 +102,38 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 17,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,'}).addTo(map);
 
-    // L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
-    // attribution: '&copy; <a href="http://maps.stamen.com/">Stamen Design</a>' }).addTo(map);
+    L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://maps.stamen.com/">Stamen Design</a>' }).addTo(map);
 
 // http://www.microsoft.com/maps/create-a-bing-maps-key.aspx
-//
-// var apiKey = 'Alm65xdtT45powZ9hUSGN6pHoTeFL3BzzmO_hYae7-S4ve2T6oCme-reeUZyDOEW';
-//
-// var defaults = {
-//     key: apiKey,
-//     detectRetina: true
-// };
-// var baseLayers = {};
-// [	'Aerial', 'AerialWithLabelsOnDemand',
-//     'RoadOnDemand',
-//     'CanvasDark', 'CanvasLight', 'CanvasGray'
-// ].forEach(function (imagerySet) {
-//     baseLayers[imagerySet] = L.bingLayer(L.extend({imagerySet: imagerySet}, defaults));
-// });
-//
-// baseLayers['Aerial'].addTo(map);
+//    shramov-leaflet-plugins-master
+var apiKey = 'Alm65xdtT45powZ9hUSGN6pHoTeFL3BzzmO_hYae7-S4ve2T6oCme-reeUZyDOEW';
 
-
-
-    //défintion des layers pour le contrôleur de couches
-var baseLayers = {
-    "OSM":osm,
-    "Toner":stamen,
+var defaults = {
+    key: apiKey,
+    detectRetina: true
 };
+var baseLayers = {};
+[	'Aerial', 'AerialWithLabelsOnDemand',
+    'RoadOnDemand',
+    'CanvasDark', 'CanvasLight', 'CanvasGray'
+].forEach(function (imagerySet) {
+    baseLayers[imagerySet] = L.bingLayer(L.extend({imagerySet: imagerySet}, defaults));
+});
+
+baseLayers['Aerial'].addTo(map);
+// baseLayers['CanvasDark'].addTo(map);
+
+
+
+
+
+//défintion des layers pour le contrôleur de couches
+//
+// var baseLayers = {
+//     "OSM":osm,
+//     "Toner":stamen,
+// };
 
 //Ajout de l'échelle
 L.control.scale().addTo(map);
