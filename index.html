@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebMapping - Pascal Vuylsteker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 
 <!-- Appel du Framework Leaflet -->
 <!-- Version Appel en Ligne -->
@@ -65,6 +65,7 @@
   <script src="data/reseau_sncf.js" type="text/javascript"></script>
   <script src="data/reseauferidf.js" type="text/javascript"></script>
   <script src="data/stations_autolib.js" type="text/javascript"></script>
+  <!-- <script src="data/piste.geojson" type="text/javascript"></script> -->
 
 
 </head>
@@ -79,8 +80,7 @@
     <h2>Pour aller plus loin</h2>
     <ul>
         <li>Le projet est disponible sur <a href="https://github.com/pascalpvk/webmapping">GitHub</a></li>
-        <li>Plugin FullScreen : <a href="https://github.com/brunob/leaflet.fullscreen"
-            >https://github.com/brunob/leaflet.fullscreen</a></li>
+        <li>Plugin FullScreen : <a href="https://github.com/brunob/leaflet.fullscreen">https://github.com/brunob/leaflet.fullscreen</a></li>
         <li><a href="https://github.com/k4r573n/leaflet-control-osm-geocoder">Leaflet Control OSM Geocoder</a>
         <li><a href="https://github.com/Leaflet/Leaflet.markercluster">Cluster de Marker</a></li>
     </ul>
@@ -309,6 +309,20 @@ L.control.scale().addTo(map);
       });
     GARES.addTo(map);
 
+//  Ajout de pistes cyclables
+
+// var PISTES = L.geoJson(pistes_cyclables, {
+//     style: function (feature) {
+//       return {
+//           weight: feature.properties.radius_qgis2leaf,
+//           color: feature.properties.color_qgis2leaf,
+//           opacity: feature.properties.transp_qgis2leaf,
+//           fillOpacity: feature.properties.transp_qgis2leaf
+//         };
+//       }
+//     });
+//   PISTES.addTo(map);
+
 
 
 // Ajout du layer GeoJSON stations Autolib
@@ -408,6 +422,8 @@ title.update = function () {
         "RER E": RERE,
         "Aéroports":airports,
         "Météo USA (util?/NOPE)":meteo,
+        // Fichier Pistes Cyclables trop lourd
+        // "Pistes Cyclables":PISTES,
         };
 
     var controlLayers = L.control.layers(baseLayers, overlays, {sortLayers:false,}).addTo(map);

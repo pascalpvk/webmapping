@@ -1,2 +1,3 @@
 # webmapping
-Cours DeSIGeo ENSG
+## Cours DeSIGeo ENSG
+### Pascal Vuylsteker
