@@ -6,15 +6,23 @@
   <title>WebMapping - Pascal Vuylsteker</title>
   <link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+<!-- Appel du Framework Leaflet -->
+<!-- Version Appel en Ligne -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
+    crossorigin=""/> -->
 
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+  <!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
+    crossorigin=""></script> -->
+
+    <!-- Appel du Framework Leaflet -->
+    <!-- Version Appel en Local -->
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="leaflet/leaflet.js"></script>
+
 
     <!-- PlugIn FullScreen pour Leaflet -->
   <link rel="stylesheet" href="fullscreen/Control.FullScreen.css" />
@@ -61,21 +69,21 @@
 
 </head>
 <body>
-  <h1>Cours de Webmapping</h1>
-  <h2>DeSIGeo</h2>
+    <h1>Cours de Webmapping</h1>
+    <h2>DeSIGeo</h2>
 
-  <div id="root"></div>
+    <div id="root"></div>
     <!-- Zone d'affichage de la carte. Taille déefinie dans le CSS style.css -->
-  <div id="map"></div>
+    <div id="map"></div>
 
-<h2>Pour aller plus loin</h2>
-<ul>
-  <li>Le projet est disponible sur <a href="https://github.com/pascalpvk/webmapping">GitHub</a></li>
-  <li>Plugin FullScreen : <a href="https://github.com/brunob/leaflet.fullscreen"
-    >https://github.com/brunob/leaflet.fullscreen</a></li>
-  <li><a href="https://github.com/k4r573n/leaflet-control-osm-geocoder">Leaflet Control OSM Geocoder</a>
-    <li><a href="https://github.com/Leaflet/Leaflet.markercluster">Cluster de Marker</a></li>
-</ul>
+    <h2>Pour aller plus loin</h2>
+    <ul>
+        <li>Le projet est disponible sur <a href="https://github.com/pascalpvk/webmapping">GitHub</a></li>
+        <li>Plugin FullScreen : <a href="https://github.com/brunob/leaflet.fullscreen"
+            >https://github.com/brunob/leaflet.fullscreen</a></li>
+        <li><a href="https://github.com/k4r573n/leaflet-control-osm-geocoder">Leaflet Control OSM Geocoder</a>
+        <li><a href="https://github.com/Leaflet/Leaflet.markercluster">Cluster de Marker</a></li>
+    </ul>
 
 <!-- Leaflet Control OSM Geocoder -->
 <!-- https://github.com/k4r573n/leaflet-control-osm-geocoder -->
