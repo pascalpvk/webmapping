@@ -29,12 +29,12 @@
     <!-- PlugIn Marker Cluster pour Leaflet -->
     <!-- Leaflet.markercluster -->
     <!-- https://unpkg.com/leaflet.markercluster@1.4.1/dist/ -->
-    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+    <!-- <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
   <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
-  <!-- <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" /> -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" /> -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 
 
 
@@ -96,6 +96,9 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 17,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,'}).addTo(map);
 
+    L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://maps.stamen.com/">Stamen Design</a>' }).addTo(map);
+    
 //Ajout de l'échelle
 L.control.scale().addTo(map);
 
@@ -294,13 +297,15 @@ airports.addTo(map);
 
 var title = new L.Control();
 title.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info" this.update();
-    this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>2014<br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>';
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    // this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>2014<br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>';
     return this._div;
 };
 title.update = function () {
     // this._div.innerHTML = '<h2>This is the title</h2>This is the subtitle'
-    this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>2014<br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>'
+    this._div.innerHTML = '<h2>Les transports en <br> Ile-de-France </h2>'+
+    '<h3>2014</h3><br><center><img src="img/stif_logo.png" /><br><img src="img/sncf_logo.png" /><br><img src="img/autolib_logo.png" /></center>'
 };
     title.addTo(map);
 
