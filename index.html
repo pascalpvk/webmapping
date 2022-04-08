@@ -293,7 +293,9 @@ L.control.scale().addTo(map);
 
 
 
-//Ajout du layer GeoJSON stations Autolib
+// Ajout du layer GeoJSON stations Autolib
+
+// Version avant le Clustering
 // var AUTOLIB = L.geoJson(stations_autolib, {
 //     style: function (feature) {
 //       return {
@@ -305,19 +307,6 @@ L.control.scale().addTo(map);
 //       }
 //     });
 //     AUTOLIB.addTo(map);
-
-    // var markers = L.markerClusterGroup();
-    //
-    // 		for (var i = 0; i < stations_autolib.length; i++) {
-    // 			var a = addressPoints[i];
-    // 			var title = a[2];
-    // 			var marker = L.marker(new L.LatLng(a[0], a[1]), { title: title });
-    // 			marker.bindPopup(title);
-    // 			markers.addLayer(marker);
-    // 		}
-    //
-    // 		map.addLayer(markers);
-
 
             var markers = L.markerClusterGroup();
 
@@ -369,7 +358,16 @@ title.update = function () {
 };
     title.addTo(map);
 
+// Rajout d'une couche WMS de météo
+    var meteo = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    { layers: 'nexrad-n0r-900913',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Weather data © 2012 IEM Nexrad" });
+    meteo.addTo(map);
 
+
+// ++++++++++++++++++++++++++++++++++++++++++++
     //défintion des layers pour le contrôleur de couches
 
     var baseLayers = {
@@ -377,6 +375,7 @@ title.update = function () {
         "Toner":stamen,
         "Ortho":PlanIGN,
         "IGN":OrthoIGN,
+        "Météo USA (util?/NOPE)":meteo,
     };
 
 
@@ -388,7 +387,7 @@ title.update = function () {
         "RER C": RERC,
         "RER D": RERD,
         "RER E": RERE,
-    };
+        };
 
     L.control.layers(baseLayers, overlays).addTo(map);
 
